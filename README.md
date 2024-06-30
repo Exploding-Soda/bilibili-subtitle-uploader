@@ -21,3 +21,5 @@
 3. 在拓展程序（插件）中找到Bilibili Subtitle Importer 1.0
 4. 选择你的字幕文件后点击 Upload Subtitle
 5. 如果没有错误，那么视频中应该会显示出你的字幕
+
+===
