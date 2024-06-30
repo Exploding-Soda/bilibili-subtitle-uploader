@@ -40,7 +40,6 @@ document.getElementById('uploadButton').addEventListener('click', () => {
 
 document.getElementById('closeSubtitleButton').addEventListener('click', () => {
   chrome.storage.local.remove('subtitleContent', () => {
-    alert('Subtitle closed');
     // Refresh the current tab
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
       chrome.tabs.reload(tabs[0].id);
