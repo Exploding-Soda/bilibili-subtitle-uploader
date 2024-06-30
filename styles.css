@@ -1,11 +1,62 @@
-/* styles.css */
+/* Apply a soft pink and white theme */
 body {
-    width: 200px;
-    padding: 10px;
-    font-family: Arial, sans-serif;
-  }
-  
-  #subtitleFile {
-    margin-bottom: 10px;
-  }
-  
+  width: 300px;
+  background-color: #ffeef2;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  margin: 0;
+}
+
+input[type="file"] {
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #ffccd5;
+  border: none;
+  color: #333;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background-color: #ffb3c2;
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+input[type="file"] {
+  border: 2px solid #ffccd5;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: border-color 0.3s;
+}
+
+input[type="file"]:hover {
+  border-color: #ffb3c2;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+body {
+  animation: fadeIn 1s ease-in-out;
+}

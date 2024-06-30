@@ -26,7 +26,6 @@ document.getElementById('uploadButton').addEventListener('click', () => {
         subtitleContent = srtToVtt(subtitleContent);
       }
       chrome.storage.local.set({ subtitleContent }, () => {
-        alert('Subtitle uploaded');
         // Refresh the current tab
         chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
           chrome.tabs.reload(tabs[0].id);
@@ -35,7 +34,7 @@ document.getElementById('uploadButton').addEventListener('click', () => {
     };
     reader.readAsText(file);
   } else {
-    alert('Please select a subtitle file');
+    alert('请选择一个字幕文件');
   }
 });
 
