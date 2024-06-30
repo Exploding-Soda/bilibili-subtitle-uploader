@@ -33,15 +33,18 @@ function monitorURLChange() {
   let currentURL = window.location.href;
   setInterval(() => {
     if (currentURL !== window.location.href) {
-      currentURL = window.location.href;
-      chrome.storage.local.remove('subtitleContent', () => {
-        // Refresh the current tab
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-          chrome.tabs.reload(tabs[0].id);
-        });
+      chrome.storage.local.get('subtitleContent', ({ subtitleContent }) => {
+        if (subtitleContent) {
+          currentURL = window.location.href;
+
+          chrome.storage.local.remove('subtitleContent', () => {
+            // Send a message to the background script to reload the tab
+            chrome.runtime.sendMessage({ action: 'reloadTab' });
+          });
+        }
       });
     }
-  }, 2000); // Check every second
+  }, 2000); // Check every 2 seconds
 }
 
 // Start monitoring URL changes
