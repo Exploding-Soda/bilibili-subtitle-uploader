@@ -27,6 +27,10 @@ document.getElementById('uploadButton').addEventListener('click', () => {
       }
       chrome.storage.local.set({ subtitleContent }, () => {
         alert('Subtitle uploaded');
+        // Refresh the current tab
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+          chrome.tabs.reload(tabs[0].id);
+        });
       });
     };
     reader.readAsText(file);
@@ -34,3 +38,16 @@ document.getElementById('uploadButton').addEventListener('click', () => {
     alert('Please select a subtitle file');
   }
 });
+
+document.getElementById('closeSubtitleButton').addEventListener('click', () => {
+  chrome.storage.local.remove('subtitleContent', () => {
+    alert('Subtitle closed');
+    // Refresh the current tab
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+      chrome.tabs.reload(tabs[0].id);
+    });
+  });
+});
+
+// Set initial state on load
+chrome.storage.local.set({ subtitleVisible: false });
