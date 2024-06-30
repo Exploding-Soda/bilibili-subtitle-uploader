@@ -27,3 +27,22 @@ chrome.storage.local.get('subtitleContent', ({ subtitleContent }) => {
     console.error('Subtitle content not found');
   }
 });
+
+// Function to monitor URL changes
+function monitorURLChange() {
+  let currentURL = window.location.href;
+  setInterval(() => {
+    if (currentURL !== window.location.href) {
+      currentURL = window.location.href;
+      chrome.storage.local.remove('subtitleContent', () => {
+        // Refresh the current tab
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+          chrome.tabs.reload(tabs[0].id);
+        });
+      });
+    }
+  }, 2000); // Check every second
+}
+
+// Start monitoring URL changes
+monitorURLChange();
